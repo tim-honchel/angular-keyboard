@@ -1,0 +1,42 @@
+.button-container {
+  float: left;
+  background-color: gainsboro;
+  width: max-content;
+  padding: 10px;
+}
+
+#buttonUp, #buttonLeft, #buttonCenter, #buttonRight, #buttonDown {
+  height: 50px;
+  width: 100px;
+  background-color: whitesmoke;
+}
+
+#buttonCenter {
+  border-radius: 50%;
+}
+
+#buttonUp, #buttonDown {
+  display: block;
+  margin: auto;
+}
+
+#decoyPower, #decoy1, #decoy2, #decoy3, #decoy4, #decoy5, #decoy6, #decoy7, #decoy8, #decoy9, #decoy0 {
+  height: 30px;
+  width: 100px;
+  background-color: whitesmoke;
+}
+
+#decoyPower {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+#decoy0 {
+  display: block;
+  margin: auto;
+}
+
+.remote-container {
+  column-gap: 0%;
+}

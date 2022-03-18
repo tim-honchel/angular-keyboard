@@ -1,0 +1,10 @@
+body {
+  padding: 10px;
+}
+.white-space {
+  float: left;
+  background-color: white;
+  width: 50px;
+  padding: 10px 0px 10px 10px;
+  line-height: .4;
+}

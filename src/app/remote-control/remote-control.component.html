@@ -1,0 +1,31 @@
+<div class="remote-container">
+  <div class="button-container">
+    <br>
+    <button id="decoyPower" type="button" disabled>I/O</button>
+    <br>
+    <br>
+    <button id="decoy1" type="button" disabled>1</button>
+    <button id="decoy2" type="button" disabled>2</button>
+    <button id="decoy3" type="button" disabled>3</button>
+    <br>
+    <button id="decoy4" type="button" disabled>4</button>
+    <button id="decoy5" type="button" disabled>5</button>
+    <button id="decoy6" type="button" disabled>6</button>
+    <br>
+    <button id="decoy7" type="button" disabled>7</button>
+    <button id="decoy8" type="button" disabled>8</button>
+    <button id="decoy9" type="button" disabled>9</button>
+    <br>
+    <button id="decoy0" tyoe="button" disabled>0</button>
+    <br>
+    <br>
+    <button #buttonUp id="buttonUp" type="button" (click)="pressButtonUp()" [innerHTML]="this.globals.buttonUpText"></button>
+    <br>
+    <button #buttonLeft id="buttonLeft" type="button" (click)="pressButtonLeft()" [innerHTML]="this.globals.buttonLeftText"></button>
+    <button #buttonCenter id="buttonCenter" type="button" (click)="pressButtonCenter()" [innerHTML]="this.globals.buttonCenterText"></button>
+    <button #buttonRight id="buttonRight" type="button" (click)="pressButtonRight()" [innerHTML]="this.globals.buttonRightText"></button>
+    <br>
+    <br>
+    <button #buttonDown id="buttonDown" type="button" (click)="pressButtonDown()" [innerHTML]="this.globals.buttonDownText"></button>
+  </div>
+</div>

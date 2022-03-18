@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\character-keys",
+    "\\src\\app\\footer",
+    "\\src\\app\\header",
+    "\\src\\app\\remote-control",
+    "\\src\\app\\search-suggestions",
+    "\\src\\app\\tv-screen"
+  ],
+  "SelectedNode": "\\src\\app\\remote-control\\remote-control.component.ts",
+  "PreviewInSolutionExplorer": false
+}
