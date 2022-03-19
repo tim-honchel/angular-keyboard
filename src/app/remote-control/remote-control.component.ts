@@ -94,8 +94,7 @@ export class RemoteControlComponent implements AfterViewInit {
         this.helper.updateSearchString();
         this.globals.nextAction = "";
         if (this.globals.nextAction == "findPossibleResults") {
-          this.helper.findPossibleResults();
-          this.helper.calculateNextCharacterProbabilities();
+          this.helper.getCharactersAndResults();
           this.helper.determineKeyLayout();
           this.helper.resetCursor();
           this.helper.clearCharacterCursor();
@@ -141,15 +140,15 @@ export class RemoteControlComponent implements AfterViewInit {
     switch (this.globals.nextAction) {
        case "addCharacter":
           this.helper.addCharacter();
-          this.helper.findPossibleResults();
           this.helper.updateSearchString();
-          this.helper.calculateNextCharacterProbabilities();
+          this.helper.getCharactersAndResults();
           this.helper.determineKeyLayout();
           this.helper.updateButtonLabels();
           this.helper.updateSearchString();
           this.helper.resetCursor();
           this.helper.clearCharacterCursor();
-          this.helper.updateCharacterCursor();
+        this.helper.updateCharacterCursor();
+        this.helper.clearResultCursor();
           break;
       case "selectResult":
         this.globals.nextAction = "";
@@ -159,9 +158,8 @@ export class RemoteControlComponent implements AfterViewInit {
           this.helper.updateButtonLabels();
         }
         if (this.globals.nextAction == "findPossibleResults") {
-          this.helper.findPossibleResults();
           this.helper.updateSearchString();
-          this.helper.calculateNextCharacterProbabilities();
+          this.helper.getCharactersAndResults();
           this.helper.determineKeyLayout();
           this.helper.updateButtonLabels();
           this.helper.updateSearchString();

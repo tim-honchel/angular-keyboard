@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.globals.setStartingVariables();
     this.helper.resetKeyboard();
+    this.globals.getWordList();
     
   }
   

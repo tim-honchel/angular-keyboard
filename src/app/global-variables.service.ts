@@ -1,9 +1,19 @@
 import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalVariablesService implements OnInit {
+
+  //http!: HttpClient;
+
+  constructor(private http: HttpClient) { };
+
+  wordList!: string[];
+
 
   // Button labels
   buttonLeftText?: string;
@@ -90,9 +100,34 @@ export class GlobalVariablesService implements OnInit {
   lastButton?: string;
   nextAction?: string;
 
-  constructor() { }
+  getWordList() {
+    console.log("getWordList()");
+    /*const headers = new HttpHeaders()
+      .set('content-type', 'text/plain')
+     .set('Access-Control-Allow-Origin', '*');
+    var response;
+    this.http.get<any>("https://localhost:44350/api/Values", { 'headers': headers }).subscribe(data => response = data.total);*/
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    var urlAPI = "https://localhost:44350/api/Values/";
+    console.log("sending get request to: " + urlAPI)
+    var words = this.http.get(urlAPI, requestOptions);//.subscribe(
+      //(response) => { words = response; },
+      //(error) => { console.log(error); });;
+    //var result;
+    //response.subscribe();
+    console.log(words);
+  }
 
   setStartingVariables() {
+    console.log("setStartingVariables()");
     this.selectorLocation = "onCharacters";
     this.characterCursorPosition = 4;
     this.resultCursorPosition = 1;

@@ -1,12 +1,18 @@
-import { Injectable } from '@angular/core';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
 import { GlobalVariablesService } from 'src/app/global-variables.service'
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators"
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelperFunctionsService {
 
-  constructor(public globals: GlobalVariablesService) { }
+  //http!: HttpClient;
+  constructor(public globals: GlobalVariablesService, private http: HttpClient) { }
 
   addCharacter() {
     console.log("addCharacter()");
@@ -43,11 +49,6 @@ export class HelperFunctionsService {
   addSpace() {
     console.log("addSpace()");
     this.globals.fullSearchString += " ";
-  }
-
-  calculateNextCharacterProbabilities() {
-    console.log("calculateNextCharacterProbabilities()")
-    // use API
   }
 
   changeCursorLocation() {
@@ -180,9 +181,24 @@ export class HelperFunctionsService {
     this.globals.character7 = this.globals.numberOfHotKeys == 7 ? this.globals.hotKey7 : this.globals.letters[6 - this.globals.numberOfHotKeys!];
   }
 
-  findPossibleResults() {
-    console.log("findPossibleResults()")
-    // use API
+  getCharactersAndResults() {
+    console.log("getCharactersAndResults()")
+    if (this.globals.fullSearchString != null) {
+      const headerDict = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      }
+
+      const requestOptions = {
+        headers: new HttpHeaders(headerDict),
+      };
+      this.globals.searchString = this.globals.fullSearchString.split(" ").slice(-1)[0];
+      var urlAPI = "https://localhost:44350/api/Values/" + this.globals.searchString;
+      console.log("sending get request to: " + urlAPI)
+      var words = this.http.get(urlAPI, requestOptions);
+      console.log(words);
+    }
   }
 
   moveCharacterKeysDown() {
