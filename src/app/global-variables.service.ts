@@ -100,31 +100,7 @@ export class GlobalVariablesService implements OnInit {
   lastButton?: string;
   nextAction?: string;
 
-  getWordList() {
-    console.log("getWordList()");
-    /*const headers = new HttpHeaders()
-      .set('content-type', 'text/plain')
-     .set('Access-Control-Allow-Origin', '*');
-    var response;
-    this.http.get<any>("https://localhost:44350/api/Values", { 'headers': headers }).subscribe(data => response = data.total);*/
-    const headerDict = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    }
-
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-    var urlAPI = "https://localhost:44350/api/Values/";
-    console.log("sending get request to: " + urlAPI)
-    var words = this.http.get(urlAPI, requestOptions);//.subscribe(
-      //(response) => { words = response; },
-      //(error) => { console.log(error); });;
-    //var result;
-    //response.subscribe();
-    console.log(words);
-  }
+  results = Array<string>();
 
   setStartingVariables() {
     console.log("setStartingVariables()");

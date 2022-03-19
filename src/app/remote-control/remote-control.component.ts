@@ -67,6 +67,9 @@ export class RemoteControlComponent implements AfterViewInit {
       this.helper.clearResultCursor();
       this.helper.updateResultCursor();
     }
+    if (this.globals.buttonCenterText == "Finish Search") {
+      this.helper.updateButtonLabels();
+    }
     //
   }
   pressButtonLeft(): void {
@@ -79,6 +82,8 @@ export class RemoteControlComponent implements AfterViewInit {
       case "setStartingVariables":
         this.globals.setStartingVariables();
         this.helper.resetKeyboard();
+        this.helper.clearResultCursor();
+        this.helper.updateCharacterCursor();
         this.helper.checkForScrolling();
         this.helper.updateSearchString();
         this.helper.updateButtonLabels();
@@ -90,15 +95,16 @@ export class RemoteControlComponent implements AfterViewInit {
         this.helper.updateButtonLabels();
         break;
       case "deleteCharacter":
+        this.globals.nextAction = "";
         this.helper.deleteCharacter();
         this.helper.updateSearchString();
-        this.globals.nextAction = "";
         if (this.globals.nextAction == "findPossibleResults") {
-          this.helper.getCharactersAndResults();
-          this.helper.determineKeyLayout();
-          this.helper.resetCursor();
-          this.helper.clearCharacterCursor();
-          this.helper.updateCharacterCursor();
+          this.helper.getRequest();
+          setTimeout(() => this.helper.getCharactersAndResults(), 100);
+          setTimeout(() => this.helper.determineKeyLayout(), 100);
+          setTimeout(() => this.helper.resetCursor(), 100);
+          setTimeout(() => this.helper.clearCharacterCursor(), 100);
+          setTimeout(() => this.helper.updateCharacterCursor(), 100);
         }
         else if (this.globals.nextAction == "resetKeyboard") {
           this.helper.resetKeyboard();
@@ -141,14 +147,15 @@ export class RemoteControlComponent implements AfterViewInit {
        case "addCharacter":
           this.helper.addCharacter();
           this.helper.updateSearchString();
-          this.helper.getCharactersAndResults();
-          this.helper.determineKeyLayout();
-          this.helper.updateButtonLabels();
-          this.helper.updateSearchString();
-          this.helper.resetCursor();
-          this.helper.clearCharacterCursor();
-        this.helper.updateCharacterCursor();
-        this.helper.clearResultCursor();
+          this.helper.getRequest();
+          setTimeout(() => this.helper.getCharactersAndResults(), 100);
+          setTimeout(() => this.helper.determineKeyLayout(), 100);
+          setTimeout(() => this.helper.updateButtonLabels(), 100);
+          setTimeout(() => this.helper.updateSearchString(), 100);
+          setTimeout(() => this.helper.resetCursor(), 100);
+          setTimeout(() => this.helper.clearCharacterCursor(), 100);
+          setTimeout(() => this.helper.updateCharacterCursor(), 100);
+          setTimeout(() => this.helper.clearResultCursor(), 100);
           break;
       case "selectResult":
         this.globals.nextAction = "";
@@ -159,13 +166,14 @@ export class RemoteControlComponent implements AfterViewInit {
         }
         if (this.globals.nextAction == "findPossibleResults") {
           this.helper.updateSearchString();
-          this.helper.getCharactersAndResults();
-          this.helper.determineKeyLayout();
-          this.helper.updateButtonLabels();
-          this.helper.updateSearchString();
-          this.helper.resetCursor();
-          this.helper.clearResultCursor();
-          this.helper.updateResultCursor();
+          this.helper.getRequest();
+          setTimeout(() => this.helper.getCharactersAndResults(), 100);
+          setTimeout(() => this.helper.determineKeyLayout(), 100);
+          setTimeout(() => this.helper.updateButtonLabels(), 100);
+          setTimeout(() => this.helper.updateSearchString(), 100);
+          setTimeout(() => this.helper.resetCursor(), 100);
+          setTimeout(() => this.helper.clearResultCursor(), 100);
+          setTimeout(() => this.helper.updateResultCursor(),100);
         }
         break;
     }

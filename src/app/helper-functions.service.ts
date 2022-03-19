@@ -2,7 +2,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { GlobalVariablesService } from 'src/app/global-variables.service'
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { map } from "rxjs/operators"
 
 
@@ -183,6 +183,41 @@ export class HelperFunctionsService {
 
   getCharactersAndResults() {
     console.log("getCharactersAndResults()")
+    var results = Array<string>();
+    results = this.globals.results!;
+    console.log(results);
+    this.globals.character1 = results[0];
+    this.globals.character2 = results[1];
+    this.globals.character3 = results[2];
+    this.globals.character4 = results[3];
+    this.globals.character5 = results[4];
+    this.globals.character6 = results[5];
+    this.globals.character7 = results[6];
+    this.globals.result1 = results[7];
+    this.globals.result2 = results[8];
+    this.globals.result3 = results[9];
+    this.globals.result4 = results[10];
+    this.globals.result5 = results[11];
+    this.globals.result6 = results[12];
+    this.globals.result7 = results[13];
+    this.globals.result8 = results[14];
+    this.globals.result9 = results[15];
+    this.globals.hotKey1 = this.globals.character1;
+    this.globals.hotKey2 = this.globals.character2;
+    this.globals.hotKey3 = this.globals.character3;
+    this.globals.hotKey4 = this.globals.character4;
+    this.globals.hotKey5 = this.globals.character5;
+    this.globals.hotKey6 = this.globals.character6;
+    this.globals.hotKey7 = this.globals.character7;
+    this.globals.numberOfHotKeys = results.slice(0, 7).filter(character => character != "&nbsp").length;
+
+
+
+    //}
+  }
+
+  getRequest() {
+    console.log("getRequest()")
     if (this.globals.fullSearchString != null) {
       const headerDict = {
         'Content-Type': 'application/json',
@@ -196,8 +231,7 @@ export class HelperFunctionsService {
       this.globals.searchString = this.globals.fullSearchString.split(" ").slice(-1)[0];
       var urlAPI = "https://localhost:44350/api/Values/" + this.globals.searchString;
       console.log("sending get request to: " + urlAPI)
-      var words = this.http.get(urlAPI, requestOptions);
-      console.log(words);
+      this.http.get<any>(urlAPI, requestOptions).subscribe(response => { this.globals.results = response; });
     }
   }
 
