@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class GlobalVariablesService implements OnInit {
 
-  //http!: HttpClient;
+  
 
   constructor(private http: HttpClient) { };
 
+  // data to be received from backend API
   wordList!: string[];
+  results = Array<string>();
 
 
   // Button labels
@@ -100,8 +102,7 @@ export class GlobalVariablesService implements OnInit {
   lastButton?: string;
   nextAction?: string;
 
-  results = Array<string>();
-
+  // Sets or resets the variable values for beginning a new search
   setStartingVariables() {
     console.log("setStartingVariables()");
     this.selectorLocation = "onCharacters";

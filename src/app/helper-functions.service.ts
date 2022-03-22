@@ -11,9 +11,9 @@ import { map } from "rxjs/operators"
 })
 export class HelperFunctionsService {
 
-  //http!: HttpClient;
   constructor(public globals: GlobalVariablesService, private http: HttpClient) { }
 
+  // Adds a character to the search string
   addCharacter() {
     console.log("addCharacter()");
     var characterToAdd;
@@ -46,11 +46,13 @@ export class HelperFunctionsService {
     this.globals.fullSearchString += characterToAdd!;
   }
 
+  // Adds a space to the search string
   addSpace() {
     console.log("addSpace()");
     this.globals.fullSearchString += " ";
   }
 
+  // Determines the new cursor location
   changeCursorLocation() {
     console.log("changeCursorLocation()");
     switch (this.globals.lastButton) {
@@ -105,6 +107,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Determines whether to move the keys up or down
   checkForScrolling() {
   console.log("checkForScrolling()")
   if (this.globals.selectorLocation == "onCharacters") {
@@ -117,6 +120,7 @@ export class HelperFunctionsService {
   }
 }
 
+  // Temporarily clears the character "mouse" before assigning its new location
   clearCharacterCursor() {
     console.log("clearCharacterCursor()");
     this.globals.characterCursor1 = "color:whitesmoke";
@@ -128,6 +132,7 @@ export class HelperFunctionsService {
     this.globals.characterCursor7 = "color:whitesmoke";
   }
 
+  // Temporarily clears the results "mouse" before assigning its new location
   clearResultCursor() {
     console.log("clearResultCursor()");
     this.globals.resultCursor1 = "color:whitesmoke";
@@ -141,12 +146,14 @@ export class HelperFunctionsService {
     this.globals.resultCursor9 = "color:whitesmoke";
   }
 
+  // Displays after the user completes their search
   completeSearch() {
     console.log("completeSearch()");
     this.globals.selectorLocation = "complete";
     this.globals.resultUp = "Search complete!";
   }
 
+  // Backspaces the last character
   deleteCharacter() {
     console.log("deleteCharacter()");
     if (this.globals.fullSearchString!.length > 0) {
@@ -154,6 +161,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Determines which set of keys to display (hotkeys, letters, numbers)
   determineKeyLayout() {
     console.log("determineKeyLayout()");
     this.globals.topCharacterIndex = 0;
@@ -181,6 +189,7 @@ export class HelperFunctionsService {
     this.globals.character7 = this.globals.numberOfHotKeys == 7 ? this.globals.hotKey7 : this.globals.letters[6 - this.globals.numberOfHotKeys!];
   }
 
+  // Updates the characters and results to display
   getCharactersAndResults() {
     console.log("getCharactersAndResults()")
     var results = Array<string>();
@@ -210,12 +219,9 @@ export class HelperFunctionsService {
     this.globals.hotKey6 = this.globals.character6;
     this.globals.hotKey7 = this.globals.character7;
     this.globals.numberOfHotKeys = results.slice(0, 7).filter(character => character != "&nbsp").length;
-
-
-
-    //}
   }
 
+  // sends a request to the backend API
   getRequest() {
     console.log("getRequest()")
     if (this.globals.fullSearchString != null) {
@@ -235,6 +241,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Adjusts keys when moving from one character set to another
   moveCharacterKeysDown() {
     console.log("moveCharacterKeysDown()");
     this.globals.characterCursorPosition = 7;
@@ -303,6 +310,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Adjusts keys when moving from one character set to another
   moveCharacterKeysUp() {
     console.log("moveCharacterKeysUp()");
     this.globals.characterCursorPosition = 1;
@@ -372,6 +380,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Repositions the cursor's vertical position when the search string changes
   resetCursor() {
     console.log("resetCursor()");
     if (this.globals.selectorLocation == "onCharacters") {
@@ -384,6 +393,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Resets the keys to default values
   resetKeyboard() {
   console.log("resetKeyboard()")
   this.globals.character1 = 'A';
@@ -419,6 +429,7 @@ export class HelperFunctionsService {
     this.globals.nextAction = "updateCharacterCursor";
 }
 
+  // Updates the search string when the user selects one of the recommended results
   selectResult() {
     console.log("selectResult()")
     var resultSelected;
@@ -465,6 +476,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Updates the button labels when the user switches between the keyboard and the results
   updateButtonLabels() {
     console.log("updateButtonLabels()");
     switch (this.globals.selectorLocation) {
@@ -528,6 +540,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Updates the vertical position of the character cursor
   updateCharacterCursor() {
     console.log("updateCharacterCursor()");
     switch (this.globals.characterCursorPosition) {
@@ -555,6 +568,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Updates the vertical position of the results cursor
   updateResultCursor() {
     console.log("updateResultCursor()");
     switch (this.globals.resultCursorPosition) {
@@ -588,6 +602,7 @@ export class HelperFunctionsService {
     }
   }
 
+  // Updates the display of the search string
   updateSearchString() {
     console.log("updateSearchString()");
     if (this.globals.fullSearchString!.length == 0) {

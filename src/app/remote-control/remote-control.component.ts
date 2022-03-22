@@ -21,15 +21,11 @@ export class RemoteControlComponent implements AfterViewInit {
     private helper: HelperFunctionsService
   ) { }
 
-  
-
-
   ngAfterViewInit() {
 
   }
 
-
-
+  // Determines what to do when the up button is pressed
   pressButtonUp(): void {
     console.log("---UP BUTTON---");
     this.globals.lastButton = "up";
@@ -49,6 +45,8 @@ export class RemoteControlComponent implements AfterViewInit {
       this.helper.updateResultCursor();
     }
   }
+
+  // Determines what to do when the down button is pressed
   pressButtonDown(): void {
     console.log("---DOWN BUTTON---");
     this.globals.lastButton = "down";
@@ -72,6 +70,8 @@ export class RemoteControlComponent implements AfterViewInit {
     }
     //
   }
+
+  // Determines what to do when the left button is pressed
   pressButtonLeft(): void {
     console.log("---LEFT BUTTON---");
     this.globals.lastButton = "left";
@@ -114,6 +114,8 @@ export class RemoteControlComponent implements AfterViewInit {
         break;
     }
   }
+
+  // Determines what to do when the right button is pressed
   pressButtonRight(): void {
     console.log("---RIGHT BUTTON---");
     this.globals.lastButton = "right";
@@ -137,6 +139,8 @@ export class RemoteControlComponent implements AfterViewInit {
         break;
     }
   }
+
+  // Determines what to do when the center button is pressed
   pressButtonCenter(): void {
     console.log("---CENTER BUTTON---");
     this.globals.lastButton = "center";
@@ -179,6 +183,7 @@ export class RemoteControlComponent implements AfterViewInit {
     }
   }
 
+  // Temporarily turns a button yellow when it is pressed
   flashButtonColor(): void {
     console.log("flashButtonColor()");
     if (this.globals.lastButton == "up") {
