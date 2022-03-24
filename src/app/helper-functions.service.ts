@@ -235,7 +235,7 @@ export class HelperFunctionsService {
         headers: new HttpHeaders(headerDict),
       };
       this.globals.searchString = this.globals.fullSearchString.split(" ").slice(-1)[0];
-      var urlAPI = "https://localhost:44350/api/Values/" + this.globals.searchString;
+      var urlAPI = this.globals.apiURL + this.globals.searchString;
       console.log("sending get request to: " + urlAPI)
       this.http.get<any>(urlAPI, requestOptions).subscribe(response => { this.globals.results = response; });
     }

@@ -15,6 +15,7 @@ export class GlobalVariablesService implements OnInit {
   // data to be received from backend API
   wordList!: string[];
   results = Array<string>();
+  apiURL = "https://localhost:44350/"
 
 
   // Button labels
