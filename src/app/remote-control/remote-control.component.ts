@@ -141,7 +141,7 @@ export class RemoteControlComponent implements AfterViewInit {
   }
 
   // Determines what to do when the center button is pressed
-  pressButtonCenter(): void {
+  async pressButtonCenter(): Promise<void> {
     console.log("---CENTER BUTTON---");
     this.globals.lastButton = "center";
     this.globals.nextAction = "";
@@ -151,15 +151,15 @@ export class RemoteControlComponent implements AfterViewInit {
        case "addCharacter":
           this.helper.addCharacter();
           this.helper.updateSearchString();
-          this.helper.getRequest();
-          setTimeout(() => this.helper.getCharactersAndResults(), 100);
-          setTimeout(() => this.helper.determineKeyLayout(), 100);
-          setTimeout(() => this.helper.updateButtonLabels(), 100);
-          setTimeout(() => this.helper.updateSearchString(), 100);
-          setTimeout(() => this.helper.resetCursor(), 100);
-          setTimeout(() => this.helper.clearCharacterCursor(), 100);
-          setTimeout(() => this.helper.updateCharacterCursor(), 100);
-          setTimeout(() => this.helper.clearResultCursor(), 100);
+          await this.helper.getRequest();
+          this.helper.getCharactersAndResults();
+          this.helper.determineKeyLayout();
+          this.helper.updateButtonLabels();
+          this.helper.updateSearchString();
+          this.helper.resetCursor();
+          this.helper.clearCharacterCursor();
+          this.helper.updateCharacterCursor();
+          this.helper.clearResultCursor();
           break;
       case "selectResult":
         this.globals.nextAction = "";
